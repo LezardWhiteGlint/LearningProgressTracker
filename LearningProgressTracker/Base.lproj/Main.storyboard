@@ -722,7 +722,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="Lecture" width="116" minWidth="40" maxWidth="1000" id="WCb-9p-uMp">
+                                                <tableColumn identifier="Lecture" width="48" minWidth="40" maxWidth="1000" id="WCb-9p-uMp">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Lecture">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -748,7 +748,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="Reminder" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="aLA-Mi-h2T">
+                                                <tableColumn identifier="Reminder" width="58" minWidth="10" maxWidth="3.4028234663852886e+38" id="aLA-Mi-h2T">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Reminder">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -761,13 +761,13 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                 </tableColumn>
-                                                <tableColumn identifier="Finish" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="ZXY-O4-aMN">
+                                                <tableColumn identifier="Finish" width="87" minWidth="10" maxWidth="3.4028234663852886e+38" id="ZXY-O4-aMN">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Finish">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
-                                                    <buttonCell key="dataCell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" identifier="Finish" inset="2" id="EdI-r6-TlM">
+                                                    <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="left" identifier="Finish" inset="2" id="EdI-r6-TlM">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
@@ -812,6 +812,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="check" destination="EdI-r6-TlM" id="Drz-fc-mSs"/>
                         <outlet property="tableView" destination="LJ1-XA-53f" id="JBO-V2-DyS"/>
                     </connections>
                 </viewController>
