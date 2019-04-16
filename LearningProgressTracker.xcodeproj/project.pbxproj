@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F943D00B2265A01500C5389C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F943D00A2265A01500C5389C /* AppDelegate.swift */; };
-		F943D00D2265A01500C5389C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F943D00C2265A01500C5389C /* ViewController.swift */; };
+		F943D00D2265A01500C5389C /* ProgressTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F943D00C2265A01500C5389C /* ProgressTrackerViewController.swift */; };
 		F943D0102265A01500C5389C /* LearningProgressTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F943D00E2265A01500C5389C /* LearningProgressTracker.xcdatamodeld */; };
 		F943D0122265A01700C5389C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F943D0112265A01700C5389C /* Assets.xcassets */; };
 		F943D0152265A01700C5389C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F943D0132265A01700C5389C /* Main.storyboard */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		F943D0072265A01500C5389C /* LearningProgressTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningProgressTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F943D00A2265A01500C5389C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F943D00C2265A01500C5389C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F943D00C2265A01500C5389C /* ProgressTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTrackerViewController.swift; sourceTree = "<group>"; };
 		F943D00F2265A01500C5389C /* LearningProgressTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearningProgressTracker.xcdatamodel; sourceTree = "<group>"; };
 		F943D0112265A01700C5389C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F943D0142265A01700C5389C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				F943D00A2265A01500C5389C /* AppDelegate.swift */,
-				F943D00C2265A01500C5389C /* ViewController.swift */,
+				F943D00C2265A01500C5389C /* ProgressTrackerViewController.swift */,
 				F943D0112265A01700C5389C /* Assets.xcassets */,
 				F943D0132265A01700C5389C /* Main.storyboard */,
 				F943D0162265A01700C5389C /* Info.plist */,
@@ -136,7 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F943D00D2265A01500C5389C /* ViewController.swift in Sources */,
+				F943D00D2265A01500C5389C /* ProgressTrackerViewController.swift in Sources */,
 				F943D00B2265A01500C5389C /* AppDelegate.swift in Sources */,
 				F943D0102265A01500C5389C /* LearningProgressTracker.xcdatamodeld in Sources */,
 			);
