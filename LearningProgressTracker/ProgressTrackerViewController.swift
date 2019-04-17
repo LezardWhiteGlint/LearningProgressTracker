@@ -20,20 +20,21 @@ class ProgressTrackerViewController: NSViewController {
     var context = AppDelegate.viewContext
     
     @IBOutlet weak var tableView: NSTableView!
+    //MARK: -Action
     @IBAction func test(_ sender: NSButtonCell) {
-//        let entity = NSEntityDescription.entity(forEntityName: "Lecture", in: context)
-//        let newLecture = NSManagedObject(entity: entity!, insertInto: context) as? Lecture
-//        newLecture?.lecture = "test"
+        //        let entity = NSEntityDescription.entity(forEntityName: "Lecture", in: context)
+        //        let newLecture = NSManagedObject(entity: entity!, insertInto: context) as? Lecture
+        //        newLecture?.lecture = "test"
         let newLecture = Lecture(context: context)
         do {
-          try context.save()
+            try context.save()
         } catch {
             print("save failed")
         }
         data.append(newLecture)
         tableView.reloadData()
     }
-    @IBOutlet weak var check: NSButtonCell!
+    
     
     
     override func viewDidLoad() {
@@ -51,6 +52,7 @@ class ProgressTrackerViewController: NSViewController {
         }
     }
     
+    
     private func loadData() -> [Lecture]{
         var lectures = [Lecture]()
         let request: NSFetchRequest<Lecture> = Lecture.fetchRequest()
@@ -63,7 +65,7 @@ class ProgressTrackerViewController: NSViewController {
         }
         return lectures
     }
-
+    
     
     
     
@@ -74,40 +76,55 @@ class ProgressTrackerViewController: NSViewController {
 
 
 extension ProgressTrackerViewController:NSTableViewDelegate{
-        func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-            switch tableColumn?.identifier {
-            case NSUserInterfaceItemIdentifier(rawValue: "Lecture"):
-                let cell = NSTextField()
-                cell.identifier = NSUserInterfaceItemIdentifier(rawValue: "Lecture")
-                cell.stringValue = data[row].lecture ?? ""
-                return cell
-            case NSUserInterfaceItemIdentifier(rawValue: "FinishDate"):
-                let cell = NSTextField()
-                cell.identifier = NSUserInterfaceItemIdentifier(rawValue: "FinishDate")
-                cell.stringValue = data[row].finishDate ?? ""
-                return cell
-            case NSUserInterfaceItemIdentifier(rawValue: "Reminder"):
-                let cell = NSTextField()
-                cell.identifier = NSUserInterfaceItemIdentifier(rawValue: "Reminder")
-                cell.stringValue = data[row].reminder ?? ""
-                return cell
-            case NSUserInterfaceItemIdentifier(rawValue: "Finish"):
-                let cell = NSButton()
-                cell.setButtonType(.switch)
-                cell.title = ""
-                return cell
-            default:
-                return nil
-            }
-    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        switch tableColumn?.identifier {
+        case NSUserInterfaceItemIdentifier(rawValue: "Lecture"):
+            let cell = NSTextField()
+            cell.identifier = NSUserInterfaceItemIdentifier(rawValue: "Lecture")
+            cell.stringValue = data[row].lecture ?? ""
+            return cell
+        case NSUserInterfaceItemIdentifier(rawValue: "FinishDate"):
+            let cell = NSTextField()
+            cell.identifier = NSUserInterfaceItemIdentifier(rawValue: "FinishDate")
+            cell.stringValue = data[row].finishDate ?? ""
+            return cell
+        case NSUserInterfaceItemIdentifier(rawValue: "Reminder"):
+            let cell = NSTextField()
+            cell.identifier = NSUserInterfaceItemIdentifier(rawValue: "Reminder")
+            cell.stringValue = data[row].reminder ?? ""
+            return cell
+        case NSUserInterfaceItemIdentifier(rawValue: "Finish"):
+            let cell = NSButton()
+            cell.setButtonType(.switch)
+            cell.title = ""
+            return cell
+        default:
+            return nil
         }
-    
-    
-    
-
-}
-    extension ProgressTrackerViewController:NSTableViewDataSource{
-        func numberOfRows(in tableView: NSTableView) -> Int {
-            return data.count
-        }
+        
+        
+        
     }
+    
+    
+}
+
+extension ProgressTrackerViewController:NSTableViewDataSource{
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return data.count
+    }
+}
+
+extension ProgressTrackerViewController:NSControlTextEditingDelegate{
+    func controlTextDidEndEditing(_ obj: Notification) {
+        print("trigger controlTextDidEndEditing(_ obj: Notification) ")
+    }
+    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+        print("trigger control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText)")
+        return true
+    }
+    func control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
+        print("control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText)")
+        return true
+    }
+}

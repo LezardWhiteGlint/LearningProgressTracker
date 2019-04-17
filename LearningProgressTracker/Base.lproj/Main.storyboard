@@ -741,7 +741,7 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" identifier="FinishDate" title="Text" id="ikV-bI-QbB">
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" identifier="FinishDate" title="Text" id="ikV-bI-QbB">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -812,7 +812,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="check" destination="EdI-r6-TlM" id="Drz-fc-mSs"/>
                         <outlet property="tableView" destination="LJ1-XA-53f" id="JBO-V2-DyS"/>
                     </connections>
                 </viewController>
