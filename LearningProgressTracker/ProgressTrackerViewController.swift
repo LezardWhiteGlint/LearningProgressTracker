@@ -10,32 +10,10 @@ import Cocoa
 
 class ProgressTrackerViewController: NSViewController {
     //MARK: -Properties
-    struct Class {
-        var lecture:String?
-        var finishDate:String?
-        var reminder:String?
-        var finish:Bool
-    }
     var data = [Lecture]()
     var context = AppDelegate.viewContext
     
     @IBOutlet weak var tableView: NSTableView!
-    //MARK: -Action
-    @IBAction func test(_ sender: NSButtonCell) {
-        //        let entity = NSEntityDescription.entity(forEntityName: "Lecture", in: context)
-        //        let newLecture = NSManagedObject(entity: entity!, insertInto: context) as? Lecture
-        //        newLecture?.lecture = "test"
-        let newLecture = Lecture(context: context)
-        do {
-            try context.save()
-        } catch {
-            print("save failed")
-        }
-        data.append(newLecture)
-        tableView.reloadData()
-    }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +23,60 @@ class ProgressTrackerViewController: NSViewController {
         tableView.reloadData()
         
     }
+    
+    
+    //MARK: -Actions
+    @IBAction func addRow(_ sender: NSButtonCell) {
+        //        let entity = NSEntityDescription.entity(forEntityName: "Lecture", in: context)
+        //        let newLecture = NSManagedObject(entity: entity!, insertInto: context) as? Lecture
+        //        newLecture?.lecture = "test"
+        let newLecture = Lecture(context: context)
+        newLecture.finish = 0
+        do {
+            try context.save()
+        } catch {
+            print("save failed")
+        }
+        data.append(newLecture)
+        tableView.reloadData()
+    }
+    
+    @IBAction func lectureEndEditing(_ sender: NSTextField) {
+        let selectedRow = tableView.selectedRow
+        data[selectedRow].lecture = sender.stringValue
+        try? context.save()
+    }
+    @IBAction func reminderEndEditing(_ sender: NSTextField) {
+        let selectedRow = tableView.selectedRow
+        data[selectedRow].reminder = sender.stringValue
+        try? context.save()
+    }
+
+    
+    @objc func checkBox(_ sender:NSButton) {
+        let selectedRow = sender.tag
+        print(selectedRow)
+        data[selectedRow].finish = Int16(sender.state.rawValue)
+        if sender.state.rawValue == 1{
+            data[selectedRow].finishDate = Date().description(with: .current)
+        }else{
+            data[selectedRow].finishDate = nil
+        }
+        try? context.save()
+        tableView.reloadData()
+    }
+    
+    @IBAction func deleteRow(_ sender: NSButton) {
+        if data.count != 0 {
+            context.delete(data.last!)
+            try? context.save()
+        }
+        data = loadData()
+        tableView.reloadData()
+    }
+    
+    
+
     
     override var representedObject: Any? {
         didSet {
@@ -79,25 +111,28 @@ extension ProgressTrackerViewController:NSTableViewDelegate{
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         switch tableColumn?.identifier {
         case NSUserInterfaceItemIdentifier(rawValue: "Lecture"):
-            let cell = NSTextField()
-            cell.identifier = NSUserInterfaceItemIdentifier(rawValue: "Lecture")
-            cell.stringValue = data[row].lecture ?? ""
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Lecture"), owner: nil) as? NSTableCellView
+            cell?.textField?.stringValue = data[row].lecture ?? ""
             return cell
         case NSUserInterfaceItemIdentifier(rawValue: "FinishDate"):
-            let cell = NSTextField()
-            cell.identifier = NSUserInterfaceItemIdentifier(rawValue: "FinishDate")
-            cell.stringValue = data[row].finishDate ?? ""
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "FinishDate"), owner: nil) as? NSTableCellView
+            cell?.textField?.stringValue = data[row].finishDate ?? ""
             return cell
         case NSUserInterfaceItemIdentifier(rawValue: "Reminder"):
-            let cell = NSTextField()
-            cell.identifier = NSUserInterfaceItemIdentifier(rawValue: "Reminder")
-            cell.stringValue = data[row].reminder ?? ""
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Reminder"), owner: nil) as? NSTableCellView
+            cell?.textField?.stringValue = data[row].reminder ?? ""
             return cell
         case NSUserInterfaceItemIdentifier(rawValue: "Finish"):
-            let cell = NSButton()
-            cell.setButtonType(.switch)
-            cell.title = ""
-            return cell
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Finish"), owner: nil) as? NSTableCellView
+            let button = NSButton()
+            button.setButtonType(.switch)
+            button.title = ""
+            button.target = self
+            button.action = #selector(checkBox)
+            button.tag = row
+            button.state = NSControl.StateValue(rawValue: Int(data[row].finish))
+            cell?.addSubview(button)
+            return button
         default:
             return nil
         }
@@ -115,16 +150,4 @@ extension ProgressTrackerViewController:NSTableViewDataSource{
     }
 }
 
-extension ProgressTrackerViewController:NSControlTextEditingDelegate{
-    func controlTextDidEndEditing(_ obj: Notification) {
-        print("trigger controlTextDidEndEditing(_ obj: Notification) ")
-    }
-    func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-        print("trigger control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText)")
-        return true
-    }
-    func control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText) -> Bool {
-        print("control(_ control: NSControl, textShouldBeginEditing fieldEditor: NSText)")
-        return true
-    }
-}
+
