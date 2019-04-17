@@ -12,6 +12,7 @@
 		F943D0102265A01500C5389C /* LearningProgressTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F943D00E2265A01500C5389C /* LearningProgressTracker.xcdatamodeld */; };
 		F943D0122265A01700C5389C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F943D0112265A01700C5389C /* Assets.xcassets */; };
 		F943D0152265A01700C5389C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F943D0132265A01700C5389C /* Main.storyboard */; };
+		F943D01E2266C41300C5389C /* Lecture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F943D01D2266C41300C5389C /* Lecture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		F943D0142265A01700C5389C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F943D0162265A01700C5389C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F943D0172265A01700C5389C /* LearningProgressTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearningProgressTracker.entitlements; sourceTree = "<group>"; };
+		F943D01D2266C41300C5389C /* Lecture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lecture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				F943D0112265A01700C5389C /* Assets.xcassets */,
 				F943D0132265A01700C5389C /* Main.storyboard */,
 				F943D0162265A01700C5389C /* Info.plist */,
+				F943D01D2266C41300C5389C /* Lecture.swift */,
 				F943D0172265A01700C5389C /* LearningProgressTracker.entitlements */,
 				F943D00E2265A01500C5389C /* LearningProgressTracker.xcdatamodeld */,
 			);
@@ -136,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F943D01E2266C41300C5389C /* Lecture.swift in Sources */,
 				F943D00D2265A01500C5389C /* ProgressTrackerViewController.swift in Sources */,
 				F943D00B2265A01500C5389C /* AppDelegate.swift in Sources */,
 				F943D0102265A01500C5389C /* LearningProgressTracker.xcdatamodeld in Sources */,

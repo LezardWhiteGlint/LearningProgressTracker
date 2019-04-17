@@ -16,11 +16,22 @@ class ProgressTrackerViewController: NSViewController {
         var reminder:String?
         var finish:Bool
     }
-    var data = [Class]()
+    var data = [Lecture]()
+    var context = AppDelegate.viewContext
     
     @IBOutlet weak var tableView: NSTableView!
     @IBAction func test(_ sender: NSButtonCell) {
-        
+//        let entity = NSEntityDescription.entity(forEntityName: "Lecture", in: context)
+//        let newLecture = NSManagedObject(entity: entity!, insertInto: context) as? Lecture
+//        newLecture?.lecture = "test"
+        let newLecture = Lecture(context: context)
+        do {
+          try context.save()
+        } catch {
+            print("save failed")
+        }
+        data.append(newLecture)
+        tableView.reloadData()
     }
     @IBOutlet weak var check: NSButtonCell!
     
@@ -29,10 +40,9 @@ class ProgressTrackerViewController: NSViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        let data1 = Class(lecture: "test1", finishDate: nil, reminder: nil, finish: false)
-        let data2 = Class(lecture: "test2", finishDate: Date().description, reminder: "time", finish: true)
-        data = [data1,data2]
+        data = loadData()
         tableView.reloadData()
+        
     }
     
     override var representedObject: Any? {
@@ -41,8 +51,26 @@ class ProgressTrackerViewController: NSViewController {
         }
     }
     
+    private func loadData() -> [Lecture]{
+        var lectures = [Lecture]()
+        let request: NSFetchRequest<Lecture> = Lecture.fetchRequest()
+        //    request.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true)]
+        //        request.predicate = NSPredicate(format: "amount > %@", "0")
+        //        let context = AppDelegate.viewContext
+        let result = try? context.fetch(request)
+        for lecture in (result ?? []){
+            lectures.append(lecture)
+        }
+        return lectures
+    }
+
+    
+    
+    
     
 }
+
+
 
 
 extension ProgressTrackerViewController:NSTableViewDelegate{
@@ -73,6 +101,8 @@ extension ProgressTrackerViewController:NSTableViewDelegate{
             }
     
         }
+    
+    
     
 
 }
